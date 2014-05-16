@@ -1,0 +1,51 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    </head>
+    <body style="background-color:gray;">
+    
+<div class="input-prepend" class="datepicker">
+        <span style="display:inline;">
+            <i class="icon-remove icon-white"style="margin-top:-9px; margin-right:-14px;" onclick="setDatePicker('search_date_from','remove')"></i>
+            <i class="icon-time icon-white" style="margin-top:5px; margin-right:3px;"onclick="setDatePicker('search_date_from','today')"></i>
+        </span>  
+        <span class="add-on">
+            <i  class="icon-calendar" style="height:24px;margin-bottom:2px;"></i>
+        </span>
+        <input type="date" class="input-mini" name="date_from_{{module}}_{{count}}" data-format="MM/dd/yyyy" value="" placeholder="MM/dd/yyyy"/>
+</div>
+<div class="input-append" class="datepicker">
+        <input type="date" class="input-mini" name="date_from_{{module}}_{{count}}" data-format="MM/dd/yyyy" value="" placeholder="MM/dd/yyyy"/>
+        <span class="add-on">
+            <i  class="icon-calendar" style="height:24px;margin-bottom:2px;"></i>
+        </span>
+        <span style="display:inline;">
+            <i class="icon-remove icon-white"style="margin-top:-9px; margin-right:-14px;" onclick="setDatePicker('search_date_from','remove')"></i>
+            <i class="icon-time icon-white" style="margin-top:5px; margin-right:3px;"onclick="setDatePicker('search_date_from','today')"></i>
+        </span>  
+</div>
+
+<div class="input-prepend" class="datepicker">
+        <span class="add-on">
+            <i  class="icon-calendar" style="height:24px;margin-bottom:2px;"></i>
+        </span>
+        <input type="date" class="input-mini" name="date_from_{{module}}_{{count}}" data-format="MM/dd/yyyy" value="" placeholder="mm/dd/yy"/>
+</div>
+<div class="input-append" class="datepicker">
+        <input type="date" class="input-mini" name="date_to_{{module}}_{{count}}" data-format="MM/dd/yyyy" value="" placeholder="mm/dd/yy"/>
+        <span class="add-on">
+            <i  class="icon-calendar" style="height:24px;margin-bottom:2px;"></i>
+        </span>
+</div>
+
+</body>
+</html>
+
+
+
