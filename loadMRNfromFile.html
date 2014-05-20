@@ -1,20 +1,38 @@
-<input type="file" id="files" name="files[]" multiple />
-<output id="list"></output>
-
-<script>
-  function handleFileSelect(evt) {
-    var files = evt.target.files; // FileList object
-
-    // files is a FileList of File objects. List some properties.
-    var output = [];
-    for (var i = 0, f; f = files[i]; i++) {
-      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-                  f.size, ' bytes, last modified: ',
-                  f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-                  '</li>');
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <title>Load file</title>
+</head>
+<body><div><input type="file" id="fileinput"/></div>
+<div id="input_box"><input type="text" class="input-mini" id="MRNinput" value=""></div>
+<script type="text/javascript">
+  function readSingleFile(evt) {
+    //Retrieve the first (and only!) File from the FileList object
+    var f = evt.target.files[0]; 
+    alert("file loaded");
+    if (f) {
+      alert("inside");
+      var r = new FileReader();
+      r.onload = function(e) { 
+        alert("inside 2");
+        var contents = e.target.result;
+        alert(contents);
+        // jquery("input_box").html(contents);
+        // document.getElementById("MRNinput").value(contents);
+        alert('hello world');
+        if (contents){         
+        }
+        else {
+          alert("failed to read the file");
+        }
+      }
+    } else { 
+      alert("Failed to load file");
     }
-    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
   }
 
-  document.getElementById('files').addEventListener('change', handleFileSelect, false);
-</script>s
+  document.getElementById('fileinput').addEventListener('change', readSingleFile, false);
+</script>
+</body>
+</html>

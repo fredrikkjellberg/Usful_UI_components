@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- styles: basics & UI -->
+    <link href="Content/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="Content/bootstrap-responsive.css" >
+    <link rel="stylesheet" href="Content/DataTables-1.9.4/media/css/jquery.dataTables.css" >
+    <link rel="stylesheet" href="Content/snap.css"/>
+    <!-- styles: dataEntry -->
+    <link rel="stylesheet" href="Content/bootstrap-datetimepicker.min.css" >
+    <link rel="stylesheet" href="Content/bootstrap-multiselect.css"/>
+    <link rel="stylesheet" href="Content/select2.css"/>
+    <!-- styles: customization -->
+    <link rel="stylesheet" href="Content/StyleSheet.css" >
+    
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/jquery.blockUI.min.js"></script>
+    <script src="Scripts/jquery.hotkeys.js"></script>
+  </head>
+
+<body data-spy="scroll" data-target=".bs-docs-sidebar" style="background-color: #ffffff;">
+
+<!-- MAIN WINDOW -->
+<div class="container-fluid" id="container" style="margin-top:5px;">
+
+<script type="text/javascript">
+
+function loadThisXX() {
+    //alert('submitAdv');
+    var results = { P:'', M:''};
+
+    // firs loops all the moduels, where patient is 
+    jQuery('div[id^=module_]').each(function () {
+
+    	var moduledata = { module:'', param:''};
+
+        // module_1
+        var id = this.getAttribute('id'); //  get the module ID
+        //alert(id);
+        var tmp = id.split('_');
+        var module_count = tmp[1]; // module count
+        // htmlstring = this.innerHTML;
+
+        moduledata['module'] =  module_count; // this is where I would copy in the module name
+
+        jQuery('div[id^=param_]').each(function () {
+
+        // param_1_1
+        var id = this.getAttribute('id'); //  get the module ID
+        //alert(id);
+        var tmp = id.split('_');
+        var module_count = tmp[1]; // module count
+        var param_count = tmp[2]; // module count
+
+        var data = new Object();
+        data.innertext = this.innerHTML; //alert(text);
+        data.count = module_count;
+        data.randomword = "random";
+
+        var param_JSON = JSON.stringify(data); // this will stringfy one prameter
+       
+        //alert(json);
+        if (moduledata['param'] != '') {
+        		moduledata['param'] += ',';
+        	}
+        moduledata['param'] += param_JSON;
+        // alert(moduledata['param']); 
+
+    	});
+
+    	// save data to either study or module
+    	Module_JSON = JSON.stringify(moduledata);
+        if (moduledata['module'] == "1"){
+        	results['P'] += Module_JSON;
+        	alert(results['P']);
+        }
+        else{
+			results['S'] += Module_JSON;
+			alert(results['P']);
+        }
+
+    });
+
+    // save the data
+
+    jQuery('input[name=DATA_P]').val('[' + results['P'] + ']');
+    jQuery('input[name=DATA_S]').val('[' + results['S'] + ']');  //alert(jQuery('input[name=PATIENT_ADV]').val());
+}
+
+</script>
+
+
+<div id="advSearchDiv">
+		<div id="module_1">
+			<div id="param_1_1" >something module 1 param 2</div>
+			<div id="param_1_2" >something module 1 param 3</div>
+			<div id="param_1_3" >something module 1 param 4</div>
+		</div>
+
+		<div id="module_2">
+			<div id="param_2_1" >something module 2 param 2</div>
+			<div id="param_2_2" >something module 3 param 3</div>
+			<div id="param_2_3" >something module 4 param 4</div>
+		</div>
+
+            <a onclick="loadThisXX()">click to save data</a>
+
+
+            <input name="DATA_P" value="" />
+            <input name="DATA_S" value="" />
+    </div>
+</div>
+
+
+  
+ </body>
+</html>
