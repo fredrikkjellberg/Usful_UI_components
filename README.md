@@ -1,4 +1,4 @@
 Usful_UI_components
 ===================
 
-CSS, html, and js reusable components
+CSS, html, and js resusable components
